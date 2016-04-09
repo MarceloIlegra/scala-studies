@@ -1,0 +1,15 @@
+package week4
+
+object Nth {
+
+  def main(args: Array[String]) {
+    val list = new Cons(1, new Cons(2, new Cons(3, new Nil())))
+    println(nth(-1,list))
+  }
+
+  def nth[T](n: Int, xs: List[T]): T = {
+    if(n == 0) xs.head
+    else nth(n-1, xs.tail)
+  }
+
+}
