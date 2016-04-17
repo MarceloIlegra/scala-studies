@@ -9,6 +9,9 @@ class ApiService {
   def getAllElders(groups: Map[String, List[Person]]) =
     groups map {case (specie, people) => sortList(people)(0)} toList
 
+  def getNonElders(groups: Map[String, List[Person]]) = 
+    (groups map { case (specie, people) => sortList(people).tail} toList).flatten
+
   def sortList(people: List[Person]) = people.sortBy(p => p)
 
 

@@ -67,4 +67,26 @@ class ApiServiceTest extends FunSuite{
 
   }
 
+  test("should return non-elders by each specie") {
+    val service = new ApiService()
+
+    val a = new Person("url", "person a", "18 BBY", "speciea", "100")
+    val b = new Person("url", "person b", "20 ABY", "speciea", "100")
+
+    val c = new Person("url", "person c", "20 ABY", "specieb", "100")
+
+    val d = new Person("url", "person d", "20 ABY", "speciec", "100")
+    val e = new Person("url", "person e", "18 ABY", "speciec", "100")
+
+    val f = new Person("url", "person f", "50 BBY", "specied", "100")
+    val g = new Person("url", "person g", "30 BBY", "specied", "100")
+
+    val nonElders = service.getNonElders(Map("speciea" -> List(a, b), "specieb" -> List(c), "speciec" -> List(d,e), "specied" -> List(f,g)))
+
+    assert(nonElders.size == 3)
+    assert(nonElders(0).name == "person b")
+    assert(nonElders(1).name == "person d")
+    assert(nonElders(2).name == "person g")
+  }
+
 }
