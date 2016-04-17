@@ -1,6 +1,6 @@
 package br.com.starwars.challenge.model
 
-class Person(val urlPeople: String, val name: String, val birthYear: String, val urlSpecie: String, val mass: String) {
+class Person(val urlPeople: String, val name: String, val birthYear: String, val urlSpecie: String, val mass: String)  extends Ordered [Person]{
 
   def isOlderThan(that: Person):Boolean = {
 
@@ -22,5 +22,7 @@ class Person(val urlPeople: String, val name: String, val birthYear: String, val
     }
 
   }
+
+  override def compare(that: Person): Int = if(isOlderThan(that)) -1 else 1
 
 }
