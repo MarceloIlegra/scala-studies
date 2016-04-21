@@ -15,7 +15,7 @@ class TravelTest extends FunSuite {
 
     val vehicle = new Vehicle("XXXX", 4)
 
-    val travels = new Travel(vehicle, ListBuffer(a, b, c), "")
+    val travels = new Travel(vehicle, ListBuffer(a, b, c), "", "")
 
     assert(travels.itHasFreePlace(d))
     assert(travels.itHasFreePlace(e) == false)

@@ -18,26 +18,31 @@ class ApiService {
     elders.foreach(p => {
       val empty: Boolean = travels.isEmpty
       if(empty) {
-        travels += new Travel(vehicle, ListBuffer[Person](p), "high")
+        travels += new Travel(vehicle, ListBuffer[Person](p), "high", "elder")
       } else {
         if(travels.last.itHasFreePlace(p))
           travels.last.add(p)
         else{
-          travels += new Travel(vehicle, ListBuffer[Person](p), "high");
+          travels += new Travel(vehicle, ListBuffer[Person](p), "high", "elder");
         }
       }
     })
+    var nonEldersTravels = new ListBuffer[Travel]()
 
-    nonElders.foreach(p => {
-      val empty: Boolean = travels.isEmpty
-      if(empty) {
-        travels += new Travel(vehicle, ListBuffer[Person](p), "low")
-      } else {
-        
-      }
-    })
+    nonElders.groupBy(person => person.urlSpecie).foreach{
+        case (specie, people) => people.foreach(p => {
+          addNonEldersTravels(p, specie, nonEldersTravels)
+        })
+    }
 
-    travels.toList
+    def addNonEldersTravels(person: Person, specie: String, travels: ListBuffer[Travel]) = {
+      val k: ListBuffer[Travel] = travels.filter(t => t.specie == specie).filter(t => t.itHasFreePlace(person))
+      if(k.size > 0) k(0).add(person)
+      else travels += new Travel(vehicle, ListBuffer[Person](person), "low", specie)
+      println("trying add person in travel")
+    }
+
+    List(travels.toList, nonEldersTravels.toList).flatten.toList
 
   }
 

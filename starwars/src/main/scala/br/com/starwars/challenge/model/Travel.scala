@@ -2,7 +2,7 @@ package br.com.starwars.challenge.model
 
 import scala.collection.mutable.ListBuffer
 
-class Travel(val vehicle: Vehicle, var people: ListBuffer[Person], val priority: String) {
+class Travel(val vehicle: Vehicle, var people: ListBuffer[Person], val priority: String, val specie: String) {
 
   def itHasFreePlace(person: Person) = {
     val actualMass = people.map(p => p.mass.toInt).sum

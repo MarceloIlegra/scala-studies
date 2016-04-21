@@ -104,13 +104,18 @@ class ApiServiceTest extends FunSuite {
     val g = new Person("url", "person g", "30 BBY", "specied", "100")
     val g2 = new Person("url", "person g", "30 BBY", "specied", "100")
 
-    val people = List(a, b, c, d, e, f, g, g2)
+    val h = new Person("url", "person h", "30 BBY", "speciee", "100")
+
+    val people = List(a, b, c, d, e, f, g, g2, h)
 
     val travels: List[Travel] = service.createTravels(people)
 
     assert(travels(0).people.size == 4)
-    assert(travels.size == 4)
+    assert(travels(1).people.size == 1)
+    assert(travels.size == 5)
 
+    assert(travels.count(t => t.priority == "high") == 2)
+    assert(travels.count(t => t.priority == "low") == 3)
 
   }
 
