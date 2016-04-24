@@ -7,27 +7,19 @@ import scala.collection.mutable.ListBuffer
 class RescueElder {
 
   def rescue(people: List[Person], vehicle: Vehicle) = {
-    val elders = getAllElders(people)
-
-    val vehicle = new Vehicle("XXXX", 4)
-
     var travels = new ListBuffer[Travel]()
-
-    elders.foreach(p => {
-      if(travels.isEmpty) {
-        travels += new Travel(vehicle, ListBuffer[Person](p), "high", "elder")
-      } else {
-        if (travels.last.itHasFreePlace(p)){
-          travels.last.add(p)
-        }else{
-          travels += new Travel(vehicle, ListBuffer[Person](p), "high", "elder");
-        }
-      }
+    extractElders(people).foreach(p => needCreateNewTravel(p, travels) match {
+        case true => travels += new Travel(vehicle, ListBuffer[Person](p), "high", "elder")
+        case _ => travels.last.add(p)
     })
     travels.toList
   }
-  def getAllElders(allPeople: List[Person]) =
+
+  def needCreateNewTravel(p: Person, travels: ListBuffer[Travel]): Boolean = travels.isEmpty || !travels.last.itHasFreePlace(p)
+
+  def extractElders(allPeople: List[Person]) =
       allPeople.groupBy(p => p.urlSpecie) map { case (specie, people) => people.sortBy(p => p).head } toList
 
-
 }
+
+
