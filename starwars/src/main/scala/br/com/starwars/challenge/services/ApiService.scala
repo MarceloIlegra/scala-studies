@@ -1,12 +1,21 @@
 package br.com.starwars.challenge.services
 
 import br.com.starwars.challenge.model.{Person, Travel, Vehicle}
+import br.com.starwars.challenge.restclient.ApiRestClient
 import br.com.starwars.challenge.services.rescue.{RescueElder, RescueNonElder}
 
 class ApiService {
 
-  def createTravels(people: List[Person]):List[Travel] = {
-    val vehicle = new Vehicle("XXXX", 4)
+  def exec(idVehicle: Int, idPeople: String) = {
+    val vehicle = ApiRestClient.findVehicle(idVehicle)
+    val listIdPeople = idPeople.split(",").map(id => id.toInt).toList
+
+    createTravels(ApiRestClient.findPeople(listIdPeople), vehicle)
+
+
+  }
+
+  def createTravels(people: List[Person], vehicle: Vehicle):List[Travel] = {
     val rescueNonElders = new RescueNonElder
     val rescueElders = new RescueElder
     List(rescueElders.rescue(people, vehicle), rescueNonElders.rescue(people, vehicle)).flatten.toList

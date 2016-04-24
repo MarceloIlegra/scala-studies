@@ -9,19 +9,19 @@ class RescueNonElderTest extends FunSuite{
     val vehicle = new Vehicle("XXXX", 4)
     val rescueNonElder = new RescueNonElder
 
-    val a = new Person("url", "person a", "18 BBY", "speciea", "100")
-    val b = new Person("url", "person b", "20 ABY", "speciea", "100")
+    val a = new Person("url", "person a", "18BBY", "speciea", "100")
+    val b = new Person("url", "person b", "20ABY", "speciea", "100")
 
-    val c = new Person("url", "person c", "20 ABY", "specieb", "100")
+    val c = new Person("url", "person c", "20ABY", "specieb", "100")
 
-    val d = new Person("url", "person d", "20 ABY", "speciec", "100")
-    val e = new Person("url", "person e", "18 ABY", "speciec", "100")
+    val d = new Person("url", "person d", "20ABY", "speciec", "100")
+    val e = new Person("url", "person e", "18ABY", "speciec", "100")
 
-    val f = new Person("url", "person f", "50 BBY", "specied", "100")
-    val g = new Person("url", "person g", "30 BBY", "specied", "100")
-    val g2 = new Person("url", "person g", "30 BBY", "specied", "100")
+    val f = new Person("url", "person f", "50BBY", "specied", "100")
+    val g = new Person("url", "person g", "30BBY", "specied", "100")
+    val g2 = new Person("url", "person g", "30BBY", "specied", "100")
 
-    val h = new Person("url", "person h", "30 BBY", "speciee", "100")
+    val h = new Person("url", "person h", "30BBY", "speciee", "100")
 
     val people = List(a, b, c, d, e, f, g, g2, h)
 
@@ -36,13 +36,13 @@ class RescueNonElderTest extends FunSuite{
     val vehicle = new Vehicle("XXXX", 4)
     val rescueNonElder = new RescueNonElder
 
-    val a = new Person("url", "person a", "18 BBY", "speciea", "100")
-    val b = new Person("url", "person b", "20 ABY", "speciea", "100")
-    val c = new Person("url", "person c", "20 ABY", "specieb", "100")
-    val d = new Person("url", "person d", "20 ABY", "speciec", "100")
-    val e = new Person("url", "person e", "18 ABY", "speciec", "100")
-    val f = new Person("url", "person f", "50 BBY", "specied", "100")
-    val g = new Person("url", "person g", "30 BBY", "specied", "100")
+    val a = new Person("url", "person a", "18BBY", "speciea", "100")
+    val b = new Person("url", "person b", "20ABY", "speciea", "100")
+    val c = new Person("url", "person c", "20ABY", "specieb", "100")
+    val d = new Person("url", "person d", "20ABY", "speciec", "100")
+    val e = new Person("url", "person e", "18ABY", "speciec", "100")
+    val f = new Person("url", "person f", "50BBY", "specied", "100")
+    val g = new Person("url", "person g", "30BBY", "specied", "100")
 
     val nonElders = rescueNonElder.getNonElders(List(a, b, c, d, e, f, g))
 

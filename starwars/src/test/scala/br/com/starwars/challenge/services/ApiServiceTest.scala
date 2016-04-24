@@ -1,6 +1,6 @@
 package br.com.starwars.challenge.services
 
-import br.com.starwars.challenge.model.{Travel, Person}
+import br.com.starwars.challenge.model.{Vehicle, Travel, Person}
 import org.scalatest.FunSuite
 
 class ApiServiceTest extends FunSuite {
@@ -8,11 +8,11 @@ class ApiServiceTest extends FunSuite {
   test("Should people by species") {
     val service = new ApiService()
 
-    val a = new Person("url", "person a", "18 BBY", "speciea", "100")
-    val b = new Person("url", "person b", "20 ABY", "speciea", "100")
-    val c = new Person("url", "person c", "20 ABY", "specieb", "100")
-    val d = new Person("url", "person d", "20 ABY", "speciec", "100")
-    val e = new Person("url", "person e", "20 ABY", "speciec", "100")
+    val a = new Person("url", "person a", "18BBY", "speciea", "100")
+    val b = new Person("url", "person b", "20ABY", "speciea", "100")
+    val c = new Person("url", "person c", "20ABY", "specieb", "100")
+    val d = new Person("url", "person d", "20ABY", "speciec", "100")
+    val e = new Person("url", "person e", "20ABY", "speciec", "100")
 
     val groupedSpecies = service.groupBySpecies(List(a, b, c, d, e))
 
@@ -25,16 +25,16 @@ class ApiServiceTest extends FunSuite {
   test("Should return the elder of each specie") {
     val service = new ApiService()
 
-    val a = new Person("url", "person a", "18 BBY", "speciea", "100")
-    val b = new Person("url", "person b", "20 ABY", "speciea", "100")
+    val a = new Person("url", "person a", "18BBY", "speciea", "100")
+    val b = new Person("url", "person b", "20ABY", "speciea", "100")
 
-    val c = new Person("url", "person c", "20 ABY", "specieb", "100")
+    val c = new Person("url", "person c", "20ABY", "specieb", "100")
 
-    val d = new Person("url", "person d", "20 ABY", "speciec", "100")
-    val e = new Person("url", "person e", "18 ABY", "speciec", "100")
+    val d = new Person("url", "person d", "20ABY", "speciec", "100")
+    val e = new Person("url", "person e", "18ABY", "speciec", "100")
 
-    val f = new Person("url", "person f", "50 BBY", "specied", "100")
-    val g = new Person("url", "person g", "30 BBY", "specied", "100")
+    val f = new Person("url", "person f", "50BBY", "specied", "100")
+    val g = new Person("url", "person g", "30BBY", "specied", "100")
 
     val groups = Map("speciea" -> List(a, b), "specieb" -> List(c), "speciec" -> List(d, e), "specied" -> List(f, g))
 
@@ -51,11 +51,11 @@ class ApiServiceTest extends FunSuite {
   test("Should sort people by age") {
     val service = new ApiService()
 
-    val a = new Person("url", "person a", "20 BBY", "speciea", "100")
-    val b = new Person("url", "person b", "30 ABY", "speciea", "100")
-    val c = new Person("url", "person c", "30 BBY", "specieb", "100")
-    val d = new Person("url", "person d", "10 BBY", "speciec", "100")
-    val e = new Person("url", "person e", "5 ABY", "speciec", "100")
+    val a = new Person("url", "person a", "20BBY", "speciea", "100")
+    val b = new Person("url", "person b", "30ABY", "speciea", "100")
+    val c = new Person("url", "person c", "30BBY", "specieb", "100")
+    val d = new Person("url", "person d", "10BBY", "speciec", "100")
+    val e = new Person("url", "person e", "5ABY", "speciec", "100")
 
     val people = service.sortList(List(a, b, c, d, e))
 
@@ -70,16 +70,16 @@ class ApiServiceTest extends FunSuite {
   test("should return non-elders by each specie") {
     val service = new ApiService()
 
-    val a = new Person("url", "person a", "18 BBY", "speciea", "100")
-    val b = new Person("url", "person b", "20 ABY", "speciea", "100")
+    val a = new Person("url", "person a", "18BBY", "speciea", "100")
+    val b = new Person("url", "person b", "20ABY", "speciea", "100")
 
-    val c = new Person("url", "person c", "20 ABY", "specieb", "100")
+    val c = new Person("url", "person c", "20ABY", "specieb", "100")
 
-    val d = new Person("url", "person d", "20 ABY", "speciec", "100")
-    val e = new Person("url", "person e", "18 ABY", "speciec", "100")
+    val d = new Person("url", "person d", "20ABY", "speciec", "100")
+    val e = new Person("url", "person e", "18ABY", "speciec", "100")
 
-    val f = new Person("url", "person f", "50 BBY", "specied", "100")
-    val g = new Person("url", "person g", "30 BBY", "specied", "100")
+    val f = new Person("url", "person f", "50BBY", "specied", "100")
+    val g = new Person("url", "person g", "30BBY", "specied", "100")
 
     val nonElders = service.getNonElders(Map("speciea" -> List(a, b), "specieb" -> List(c), "speciec" -> List(d, e), "specied" -> List(f, g)))
 
@@ -91,24 +91,25 @@ class ApiServiceTest extends FunSuite {
 
   test("should create travel OK") {
     val service = new ApiService()
+    val vehicle = new Vehicle("xxxxx", 4)
 
-    val a = new Person("url", "person a", "18 BBY", "speciea", "100")
-    val b = new Person("url", "person b", "20 ABY", "speciea", "100")
+    val a = new Person("url", "person a", "18BBY", "speciea", "100")
+    val b = new Person("url", "person b", "20ABY", "speciea", "100")
 
-    val c = new Person("url", "person c", "20 ABY", "specieb", "100")
+    val c = new Person("url", "person c", "20ABY", "specieb", "100")
 
-    val d = new Person("url", "person d", "20 ABY", "speciec", "100")
-    val e = new Person("url", "person e", "18 ABY", "speciec", "100")
+    val d = new Person("url", "person d", "20ABY", "speciec", "100")
+    val e = new Person("url", "person e", "18ABY", "speciec", "100")
 
-    val f = new Person("url", "person f", "50 BBY", "specied", "100")
-    val g = new Person("url", "person g", "30 BBY", "specied", "100")
-    val g2 = new Person("url", "person g", "30 BBY", "specied", "100")
+    val f = new Person("url", "person f", "50BBY", "specied", "100")
+    val g = new Person("url", "person g", "30BBY", "specied", "100")
+    val g2 = new Person("url", "person g", "30BBY", "specied", "100")
 
-    val h = new Person("url", "person h", "30 BBY", "speciee", "100")
+    val h = new Person("url", "person h", "30BBY", "speciee", "100")
 
     val people = List(a, b, c, d, e, f, g, g2, h)
 
-    val travels: List[Travel] = service.createTravels(people)
+    val travels: List[Travel] = service.createTravels(people, vehicle)
 
     assert(travels(0).people.size == 4)
     assert(travels(1).people.size == 1)
