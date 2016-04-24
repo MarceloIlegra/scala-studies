@@ -1,15 +1,12 @@
 package br.com.starwars.challenge.restclient
 
-import br.com.starwars.challenge.model.{Vehicle, Person}
-import br.com.starwars.challenge.restclient.model.{PersonRestModel, VehicleRestModel}
+import java.net.URL
+
 import com.stackmob.newman._
 import com.stackmob.newman.dsl._
 
 import scala.concurrent._
 import scala.concurrent.duration._
-import java.net.URL
-import org.json4s._
-import org.json4s.jackson.JsonMethods._
 
 object ApiRestClient {
 
@@ -30,12 +27,7 @@ object ApiRestClient {
     implicit val httpClient = new ApacheHttpClient
     val url = new URL(APIUrl+id)
     val response = Await.result(GET(url).apply, 70.second)
-    val jsonString = parse(response.bodyString)
-
-    implicit val formats = DefaultFormats
-    println(jsonString)
-    val vehicleRestModel = jsonString.extract[VehicleRestModel]
-    new Vehicle(vehicleRestModel.name, vehicleRestModel.passengers.toInt)
+    ApiRestParser.vehicleParse(response)
   }
 
 }

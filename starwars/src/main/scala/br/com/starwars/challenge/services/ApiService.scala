@@ -9,10 +9,7 @@ class ApiService {
   def exec(idVehicle: Int, idPeople: String) = {
     val vehicle = ApiRestClient.findVehicle(idVehicle)
     val listIdPeople = idPeople.split(",").map(id => id.toInt).toList
-
     createTravels(ApiRestClient.findPeople(listIdPeople), vehicle)
-
-
   }
 
   def createTravels(people: List[Person], vehicle: Vehicle):List[Travel] = {
