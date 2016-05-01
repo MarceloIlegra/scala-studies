@@ -18,7 +18,7 @@ object ApiRestClient {
     val APIUrl = "http://swapi.co/api/people/"
     implicit val httpClient = new ApacheHttpClient
     val url = new URL(APIUrl+id)
-    val response = Await.result(GET(url).apply, 5.second)
+    val response = Await.result(GET(url).apply, 70.second)
     ApiRestParser.personParse(response)
   }
 

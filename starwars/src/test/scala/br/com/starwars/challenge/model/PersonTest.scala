@@ -32,6 +32,18 @@ class PersonTest extends FunSuite{
     assert(person.isOlderThan(otherPerson))
   }
 
+  test("unknow tests ABY"){
+    val person = new Person("url", "person name", "unknown", "specie", "100")
+    val otherPerson = new Person("url", "other person", "200ABY", "specie", "100")
+    assert(person.isOlderThan(otherPerson) == false)
+  }
+
+  test("unknow tests BBY"){
+    val person = new Person("url", "person name", "unknown", "specie", "100")
+    val otherPerson = new Person("url", "other person", "200BBY", "specie", "100")
+    assert(person.isOlderThan(otherPerson) == false)
+  }
+
   test("testing sort"){
     val person1 = new Person("url", "person 1", "150ABY", "specie", "100")
     val person2 = new Person("url", "person 2", "200ABY", "specie", "100")

@@ -11,7 +11,12 @@ object ApiRestParser {
   def personParse(response:HttpResponse) = {
     implicit val formats = DefaultFormats
     val personRestModel = parse(response.bodyString).extract[PersonRestModel]
-    new Person(null, personRestModel.name, personRestModel.birth_year, personRestModel.species.head, personRestModel.mass)
+    new Person(null, personRestModel.name, personRestModel.birth_year, extractSpecie(personRestModel.species), personRestModel.mass)
+  }
+
+  def extractSpecie(species: List[String]) = {
+    if(species.size > 0 ) species.head
+    else "unknown"
   }
 
   def vehicleParse(response:HttpResponse) = {
