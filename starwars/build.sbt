@@ -29,4 +29,9 @@ libraryDependencies ++= {
   )
 }
 
+enablePlugins(JavaAppPackaging)
+
+
+//enablePlugins(JavaAppPackaging)
+
 
